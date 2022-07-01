@@ -57,10 +57,15 @@ public class Main {
 		for (int i = 0; i < vetorPessoas.tamanho(); i++) {
 			System.out.println(vetorPessoas.recuperar(i).getNome());
 		}
-		/*vetorPessoas.inserirEm(0, new Pessoa(1, "Treinaweb"));
-		System.out.println(vetorPessoas.recuperar(0).getNome());
-		Vetor<Integer> vetorInteiros = new Vetor<Integer>(2);
-		vetorInteiros.inserirEm(0, 1);
-		System.out.println(vetorInteiros.recuperar(0));*/
+		Pessoa p = vetorPessoas.recuperar(1);
+		Pessoa pessoaErrada = new Pessoa(100, "Treinaweb 100");
+		System.out.println(vetorPessoas.contem(p));
+		System.out.println(vetorPessoas.contem(pessoaErrada));
+		System.out.println(vetorPessoas.indice(p));
+		System.out.println(vetorPessoas.indice(pessoaErrada));
+		vetorPessoas.remover(2);
+		System.out.println(vetorPessoas.toString());
+		vetorPessoas.remover(p);
+		System.out.println(vetorPessoas.toString());
 	}
 }

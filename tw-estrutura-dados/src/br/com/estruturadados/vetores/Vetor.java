@@ -41,7 +41,8 @@ public class Vetor<T> {
 			int novoTamanho = arrayFinal.length + arrayInicio.length;
 			this.elementos = new Object[novoTamanho];
 			System.arraycopy(arrayInicio, 0, this.elementos, 0, arrayInicio.length);
-			System.arraycopy(arrayFinal, 0, this.elementos, arrayInicio.length, arrayFinal.length);			
+			System.arraycopy(arrayFinal, 0, this.elementos, arrayInicio.length, arrayFinal.length);
+			this.posicao++;
 		} else {
 			this.elementos[posicao] = elemento;
 		}		
@@ -58,7 +59,50 @@ public class Vetor<T> {
 	public int tamanho() {
 		return this.elementos.length;
 	}
-
+	
+	//Método para encontrar algum elemento
+	public boolean contem(T elemento) {
+		for (int i = 0; i < tamanho(); i++) {
+			T elem = recuperar(i);
+			if (elem != null && elem.equals(elemento)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//Método para retornar o índice do vetor
+	public int indice(T elemento) {
+		for(int i = 0; i < tamanho(); i++) {
+			T elem = recuperar(i);
+			if(elem != null && elem.equals(elemento)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	//Método para remoção
+	public void remover(int posicao) {
+		if (posicao >= tamanho()) {
+			throw new IllegalArgumentException(String.format("Posição inválida [%d]", posicao));
+		}
+		Object[] arrayFinal = Arrays.copyOfRange(this.elementos, posicao + 1, tamanho());
+		Object[] arrayInicio = Arrays.copyOfRange(this.elementos, 0, posicao);
+		this.elementos = new Object[tamanho() - 1];
+		this.posicao--;
+		System.arraycopy(arrayInicio, 0, this.elementos, 0, arrayInicio.length);
+		System.arraycopy(arrayFinal, 0, this.elementos, arrayInicio.length, arrayFinal.length);
+	}
+	
+	public void remover(T elemento) {
+		int posicao = indice(elemento);
+		if (posicao >= tamanho() || posicao == -1) {
+			throw new IllegalArgumentException("Elemento inválido -" + elemento.toString());
+		}
+		remover(posicao);
+	}
+	
 	@Override
 	public String toString() {
 		return "Vetor [elementos=" + Arrays.toString(elementos) + "]";
