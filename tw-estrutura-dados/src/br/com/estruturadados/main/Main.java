@@ -29,8 +29,12 @@ public class Main {
 
 	private static void fazerListaLigada() {
 		ListaLigada<Pessoa> listaPessoas = new ListaLigada<Pessoa>();
-		listaPessoas.inserir(new Pessoa(1, "Johab 1"));
-		listaPessoas.inserir(new Pessoa(2, "Freitas 2"));
+		listaPessoas.inserir(new Pessoa(1, "Treinaweb 1"));
+		listaPessoas.inserir(new Pessoa(2, "Treinaweb 2"));
+		listaPessoas.inserir(new Pessoa(3, "Treinaweb 3"));
+		listaPessoas.inserirEm(1, new Pessoa(4, "Treinaweb 4"));
+		listaPessoas.inserirPrimeiro(new Pessoa(5, "Treinaweb 5"));
+		listaPessoas.inserirUltimo(new Pessoa(6, "Treinaweb 6"));
 		System.out.println(listaPessoas.toString());
 	}
 
