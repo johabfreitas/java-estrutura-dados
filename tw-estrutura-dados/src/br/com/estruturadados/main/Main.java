@@ -1,6 +1,7 @@
 package br.com.estruturadados.main;
 
 import br.com.estruturadados.vetores.*;
+import br.com.estruturadados.listasligadas.ListaLigada;
 import br.com.estruturadados.modelos.Pessoa;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Main {
 		System.out.println("Digite a opção desejada");
 		System.out.println("1. Gerenciamento de memória");
 		System.out.println("2. Vetores");
+		System.out.println("3. Lista Ligada");
 		Scanner scan = new Scanner(System.in);
 		int opcao = scan.nextInt();
 		switch (opcao) {
@@ -18,8 +20,18 @@ public class Main {
 		case 2:
 			fazerVetor();
 			break;
+		case 3:
+			fazerListaLigada();
+			break;
 		}
 		scan.close();
+	}
+
+	private static void fazerListaLigada() {
+		ListaLigada<Pessoa> listaPessoas = new ListaLigada<Pessoa>();
+		listaPessoas.inserir(new Pessoa(1, "Johab 1"));
+		listaPessoas.inserir(new Pessoa(2, "Freitas 2"));
+		System.out.println(listaPessoas.toString());
 	}
 
 	private static void fazerGerenciamentoMemoria() {
