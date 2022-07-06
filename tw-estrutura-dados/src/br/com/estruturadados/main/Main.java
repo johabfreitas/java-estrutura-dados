@@ -36,6 +36,20 @@ public class Main {
 		listaPessoas.inserirPrimeiro(new Pessoa(5, "Treinaweb 5"));
 		listaPessoas.inserirUltimo(new Pessoa(6, "Treinaweb 6"));
 		System.out.println(listaPessoas.toString());
+		Pessoa p = listaPessoas.recuperar(1);
+		Pessoa pessoaErrada = new Pessoa(100, "Treinaweb 100");
+		System.out.println(listaPessoas.contem(p));
+		System.out.println(listaPessoas.contem(pessoaErrada));
+		System.out.println(listaPessoas.indice(p)); 
+		System.out.println(listaPessoas.indice(pessoaErrada));
+		listaPessoas.remover(p);
+		System.out.println(listaPessoas.toString());
+		listaPessoas.remover(0);
+		System.out.println(listaPessoas.toString());
+		System.out.println("Lista de pessoas");
+		for(int i = 0; i < listaPessoas.tamanho(); i++) {
+			System.out.println(listaPessoas.recuperar(i).toString());
+		}
 	}
 
 	private static void fazerGerenciamentoMemoria() {

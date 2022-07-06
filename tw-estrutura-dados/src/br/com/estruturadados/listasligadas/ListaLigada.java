@@ -45,11 +45,11 @@ public class ListaLigada<T> {
 		}
 		this.tamanho++;
 	}
-	
+
 	public void inserirPrimeiro(T elemento) {
 		inserirEm(0, elemento);
 	}
-	
+
 	public void inserirUltimo(T elemento) {
 		inserirEm(tamanho - 1, elemento);
 	}
@@ -68,6 +68,56 @@ public class ListaLigada<T> {
 
 	public int tamanho() {
 		return this.tamanho;
+	}
+
+	public boolean contem(T elemento) {
+		for (int i = 0; i < tamanho(); i++) {
+			No<T> noAtual = recuperarNo(i);
+			if (noAtual.getElemento() != null && noAtual.getElemento().equals(elemento)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int indice(T elemento) {
+		for (int i = 0; i < tamanho(); i++) {
+			No<T> noAtual = recuperarNo(i);
+			if (noAtual.getElemento() != null && noAtual.getElemento().equals(elemento)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public void remover(int posicao) {
+		if(posicao >= tamanho()) {
+			throw new IllegalArgumentException(String.format("Posição inválida [%d]", posicao));
+		}
+		if (posicao == 0) {
+			No<T> proximoNo = this.primeiroNo.getProximo();
+			this.primeiroNo.setProximo(null); 
+			this.primeiroNo = proximoNo;
+		} else if (posicao == tamanho() - 1){
+			No<T> penultimoNo = recuperarNo(tamanho() -2);
+			penultimoNo.setProximo(null);
+			this.ultimoNo = penultimoNo;
+		} else {
+		No<T> noAnterior = recuperarNo(posicao - 1);
+		No<T> proximoNo = recuperarNo(posicao + 1);
+		No<T> noAtual = recuperarNo(posicao);
+		noAnterior.setProximo(proximoNo);
+		noAtual.setProximo(null);
+		}
+		this.tamanho--;
+	}
+
+	public void remover(T elemento) {
+		int indice = indice(elemento);
+		if(indice == -1) {
+			throw new IllegalArgumentException("Elemento inválido - " + elemento.toString());
+		}
+		remover(indice);
 	}
 
 	private No<T> recuperarNo(int posicao) {
