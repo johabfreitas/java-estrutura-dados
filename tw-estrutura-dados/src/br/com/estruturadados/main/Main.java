@@ -2,6 +2,7 @@ package br.com.estruturadados.main;
 
 import java.util.Scanner;
 
+import br.com.estruturadados.conjuntos.Conjunto;
 import br.com.estruturadados.filas.Fila;
 import br.com.estruturadados.listasligadas.ListaDuplamenteLigada;
 import br.com.estruturadados.listasligadas.ListaLigada;
@@ -18,6 +19,7 @@ public class Main {
 		System.out.println("4. Lista duplamente ligada");
 		System.out.println("5. Pilha");
 		System.out.println("6. Fila");
+		System.out.println("7. Conjunto");
 		Scanner scan = new Scanner(System.in);
 		int opcao = scan.nextInt();
 		switch (opcao) {
@@ -38,10 +40,20 @@ public class Main {
 			break;
 		case 6:
 			fazerFila();
+		case 7:
+			fazerConjunto();
+			break;
 		}
 		scan.close();
 	}
 	
+	private static void fazerConjunto() {
+		Conjunto<Pessoa> conjuntoPessoas = new Conjunto<Pessoa>();
+		System.out.println(conjuntoPessoas.estaVazio());
+		System.out.println(conjuntoPessoas.inserir(new Pessoa(1,"Treinaweb")));
+		System.out.println(conjuntoPessoas.toString());
+	}
+
 	private static void fazerFila() {
 		Fila<Pessoa> filaPessoas = new Fila<Pessoa>();
 		System.out.println(filaPessoas.estaVazia());
