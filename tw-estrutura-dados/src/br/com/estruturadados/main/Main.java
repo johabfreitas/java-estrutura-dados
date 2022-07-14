@@ -1,9 +1,13 @@
 package br.com.estruturadados.main;
 
-import br.com.estruturadados.vetores.*;
+import java.util.Scanner;
+
+import br.com.estruturadados.filas.Fila;
+import br.com.estruturadados.listasligadas.ListaDuplamenteLigada;
 import br.com.estruturadados.listasligadas.ListaLigada;
 import br.com.estruturadados.modelos.Pessoa;
-import java.util.Scanner;
+import br.com.estruturadados.pilhas.Pilha;
+import br.com.estruturadados.vetores.Vetor;
 
 public class Main {
 	public static void main(String[] args) {
@@ -11,6 +15,9 @@ public class Main {
 		System.out.println("1. Gerenciamento de memória");
 		System.out.println("2. Vetores");
 		System.out.println("3. Lista Ligada");
+		System.out.println("4. Lista duplamente ligada");
+		System.out.println("5. Pilha");
+		System.out.println("6. Fila");
 		Scanner scan = new Scanner(System.in);
 		int opcao = scan.nextInt();
 		switch (opcao) {
@@ -23,8 +30,63 @@ public class Main {
 		case 3:
 			fazerListaLigada();
 			break;
+		case 4:
+			fazerListaDuplamenteLigada();
+			break;
+		case 5:
+			fazerPilha();
+			break;
+		case 6:
+			fazerFila();
 		}
 		scan.close();
+	}
+	
+	private static void fazerFila() {
+		Fila<Pessoa> filaPessoas = new Fila<Pessoa>();
+		System.out.println(filaPessoas.estaVazia());
+		filaPessoas.enfilerar(new Pessoa(1, "Treinaweb 1"));
+		filaPessoas.enfilerar(new Pessoa(1, "Treinaweb 2"));
+		System.out.println(filaPessoas.toString());
+		Pessoa p = filaPessoas.desenfileirar();
+		System.out.println(p.toString());
+		System.out.println(filaPessoas.toString());
+	}
+
+	private static void fazerPilha() {
+		Pilha<Pessoa> pilhaPessoas = new Pilha<Pessoa>();
+		System.out.println(pilhaPessoas.estaVazia());
+		pilhaPessoas.empilhar(new Pessoa(1, "Treinaweb 1"));
+		pilhaPessoas.empilhar(new Pessoa(2, "Treinaweb 2"));
+		pilhaPessoas.empilhar(new Pessoa(3, "Treinaweb 3"));
+		Pessoa p1 = pilhaPessoas.desempilhar();
+		System.out.println(p1.toString());
+	}
+
+	private static void fazerListaDuplamenteLigada() {
+		ListaDuplamenteLigada<Pessoa> listaPessoas = new ListaDuplamenteLigada<Pessoa>();
+		listaPessoas.inserir(new Pessoa(1, "Treinaweb 1"));
+		listaPessoas.inserir(new Pessoa(2, "Treinaweb 2"));
+		listaPessoas.inserir(new Pessoa(3, "Treinaweb 3"));
+		listaPessoas.inserirEm(1, new Pessoa(4, "Treinaweb 4"));
+		listaPessoas.inserirPrimeiro(new Pessoa(5, "Treinaweb 5"));
+		listaPessoas.inserirUltimo(new Pessoa(6, "Treinaweb 6"));
+		System.out.println(listaPessoas.toString());
+		Pessoa p = listaPessoas.recuperar(1);
+		Pessoa pessoaErrada = new Pessoa(100, "Treinaweb 100");
+		System.out.println(listaPessoas.contem(p));
+		System.out.println(listaPessoas.contem(pessoaErrada));
+		System.out.println(listaPessoas.indice(p));
+		System.out.println(listaPessoas.indice(pessoaErrada));
+		listaPessoas.remover(p);
+		System.out.println(listaPessoas.toString());
+		listaPessoas.remover(0);
+		System.out.println(listaPessoas.toString());
+		System.out.println("Lista de pessoas");
+		for (int i = 0; i < listaPessoas.tamanho(); i++) {
+			System.out.println(listaPessoas.recuperar(i).toString());
+		}
+
 	}
 
 	private static void fazerListaLigada() {
@@ -40,14 +102,14 @@ public class Main {
 		Pessoa pessoaErrada = new Pessoa(100, "Treinaweb 100");
 		System.out.println(listaPessoas.contem(p));
 		System.out.println(listaPessoas.contem(pessoaErrada));
-		System.out.println(listaPessoas.indice(p)); 
+		System.out.println(listaPessoas.indice(p));
 		System.out.println(listaPessoas.indice(pessoaErrada));
 		listaPessoas.remover(p);
 		System.out.println(listaPessoas.toString());
 		listaPessoas.remover(0);
 		System.out.println(listaPessoas.toString());
 		System.out.println("Lista de pessoas");
-		for(int i = 0; i < listaPessoas.tamanho(); i++) {
+		for (int i = 0; i < listaPessoas.tamanho(); i++) {
 			System.out.println(listaPessoas.recuperar(i).toString());
 		}
 	}
