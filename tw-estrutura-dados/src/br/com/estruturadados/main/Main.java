@@ -52,10 +52,10 @@ public class Main {
 		System.out.println(conjuntoPessoas.estaVazio());
 		System.out.println(conjuntoPessoas.inserir(new Pessoa(1,"Treinaweb")));
 		System.out.println(conjuntoPessoas.toString());
-		System.out.println(conjuntoPessoas.inserir(new Pessoa(1,"Treinaweb")));
+		//System.out.println(conjuntoPessoas.inserir(new Pessoa(1,"Treinaweb")));
 		System.out.println(conjuntoPessoas.inserir(new Pessoa(2,"Treinaweb")));
 		System.out.println(conjuntoPessoas.toString());
-		System.out.println(conjuntoPessoas.inserirEm(1, new Pessoa(1,"Treinaweb")));
+		System.out.println(conjuntoPessoas.inserir(new Pessoa(1,"Treinaweb")));
 		System.out.println(conjuntoPessoas.toString());
 	}
 
