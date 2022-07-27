@@ -6,6 +6,7 @@ import br.com.estruturadados.conjuntos.Conjunto;
 import br.com.estruturadados.filas.Fila;
 import br.com.estruturadados.listasligadas.ListaDuplamenteLigada;
 import br.com.estruturadados.listasligadas.ListaLigada;
+import br.com.estruturadados.mapas.Mapa;
 import br.com.estruturadados.modelos.Pessoa;
 import br.com.estruturadados.pilhas.Pilha;
 import br.com.estruturadados.vetores.Vetor;
@@ -20,6 +21,7 @@ public class Main {
 		System.out.println("5. Pilha");
 		System.out.println("6. Fila");
 		System.out.println("7. Conjunto");
+		System.out.println("8. Mapas");
 		Scanner scan = new Scanner(System.in);
 		int opcao = scan.nextInt();
 		switch (opcao) {
@@ -43,10 +45,30 @@ public class Main {
 		case 7:
 			fazerConjunto();
 			break;
+		case 8:
+			fazerMapa();
+			break;
 		}
 		scan.close();
 	}
 	
+	private static void fazerMapa() {
+		Mapa<String, Pessoa> mapaPessoas = new Mapa<String, Pessoa>();
+		System.out.println(mapaPessoas.toString());
+		mapaPessoas.adicionar("legal", new Pessoa(1, "Treinaweb"));
+		System.out.println(mapaPessoas.toString());
+		System.out.println(mapaPessoas.contemChave("legal"));
+		System.out.println(mapaPessoas.contemChave("chata"));
+		mapaPessoas.adicionar("chata", new Pessoa(2, "João"));
+		System.out.println(mapaPessoas.contemChave("chata"));
+		mapaPessoas.adicionar("legal", new Pessoa(3, "Treinaweb Editado"));
+		System.out.println(mapaPessoas.toString());
+		mapaPessoas.remover("chata");
+		System.out.println(mapaPessoas.toString());
+		System.out.println(mapaPessoas.recuperar("legal"));
+		mapaPessoas.remover("chave");
+	}
+
 	private static void fazerConjunto() {
 		Conjunto<Pessoa> conjuntoPessoas = new Conjunto<Pessoa>();
 		System.out.println(conjuntoPessoas.estaVazio());
